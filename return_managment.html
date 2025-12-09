@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চূড়ান্ত রিটার্ন ম্যানেজমেন্ট ড্যাশবোর্ড</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa; 
+        }
+        .return-container { 
+            margin-top: 30px; 
+            margin-bottom: 50px;
+        }
+        .step-card {
+            border: none;
+            border-radius: 12px; 
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            min-height: 450px; /* উচ্চতা ঠিক রাখার জন্য */
+        }
+        .step-card:hover {
+            transform: translateY(-3px); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .status-header {
+            background-color: #0d6efd; 
+            border-radius: 12px 12px 0 0;
+            padding: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .table-custom tbody tr:hover {
+            background-color: #e9ecef; 
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">BOOK MANAGEMENT</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">All Book</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Search System</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Return Management</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fine Management</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+    <div class="container return-container">
+        <h2 class="mb-5 text-center text-primary"><i class="bi bi-clock-history me-2"></i> বই ফেরত ও ইনভেন্টরি আপডেট</h2>
+        
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+                <div class="card step-card shadow-lg">
+                    <div class="status-header bg-secondary">
+                        <i class="bi bi-1-circle-fill me-2"></i> সদস্য যাচাইকরণ
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="input-group mb-4">
+                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                            <input type="text" class="form-control" placeholder="সদস্য ID বা ফোন নম্বর লিখুন">
+                            <button class="btn btn-primary" type="button">যাচাই করুন</button>
+                        </div>
+                        
+                        <div class="card bg-light border-primary p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary"><i class="bi bi-person-check-fill me-1"></i> নাম: মি. আবুল কালাম</h5>
+                                <p class="mb-1">ID: <span class="badge bg-info">MEMBER999</span></p>
+                                <p class="mb-0">ইস্যু করা বই: <span class="fw-bold text-danger">৩টি বাকি</span></p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-danger mt-4" role="alert">
+                            <i class="bi bi-x-octagon-fill me-2"></i> **অ্যাকাউন্ট ব্লক:** পূর্বের ফাইন (৳২৫০) এখনো বকেয়া আছে। রিটার্ন প্রসেস করা যাবে না।
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card step-card shadow-lg">
+                    <div class="status-header bg-success">
+                        <i class="bi bi-2-circle-fill me-2"></i> বই স্ক্যান ও ডেটা পাস
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="input-group input-group-lg mb-4 border rounded-pill shadow-sm">
+                            <span class="input-group-text bg-light border-0"><i class="bi bi-upc-scan text-secondary"></i></span>
+                            <input type="text" class="form-control border-0" placeholder="বইয়ের বারকোড স্ক্যান করুন (একটি করে)">
+                            <button class="btn btn-success rounded-pill px-4" type="button">
+                                <i class="bi bi-plus-circle-fill"></i> যোগ করুন
+                            </button>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-custom align-middle">
+                                <thead>
+                                    <tr class="table-light">
+                                        <th>বইয়ের নাম</th>
+                                        <th>ইস্যু তারিখ</th>
+                                        <th>ডিউ ডেট</th>
+                                        <th>বিলম্ব (দিন)</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>আধুনিক সফটওয়্যার ডিজাইন</td>
+                                        <td>01-11-2025</td>
+                                        <td><span class="text-danger fw-bold">01-12-2025</span></td>
+                                        <td><span class="badge bg-danger">৬ দিন</span></td>
+                                        <td><span class="badge bg-warning text-dark p-2">Fine Triggered</span></td>
+                                        <td><button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#damageModal">ক্ষতি?</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ক্লাউড কম্পিউটিং</td>
+                                        <td>15-11-2025</td>
+                                        <td>15-12-2025</td>
+                                        <td><span class="badge bg-success">০ দিন</span></td>
+                                        <td><span class="badge bg-primary p-2">Ready</span></td>
+                                        <td><button class="btn btn-sm btn-outline-danger" disabled>ক্ষতি?</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <hr>
+                        
+                        <button class="btn btn-success btn-lg w-100 shadow-sm" type="button">
+                            <i class="bi bi-check2-circle me-2"></i> সকল বই ফেরত সম্পন্ন করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-success mt-4 d-none" role="alert" id="successMessage">
+            <h4 class="alert-heading"><i class="bi bi-check-circle-fill"></i> রিটার্ন সফল হয়েছে!</h4>
+            <p>মোট ২ টি বই সফলভাবে সিস্টেমে নেওয়া হয়েছে। ইনভেন্টরি আপডেট করা হয়েছে।</p>
+            <hr>
+            <button class="btn btn-sm btn-success" type="button"><i class="bi bi-printer-fill"></i> রসিদ প্রিন্ট করুন</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="damageModal" tabindex="-1" aria-labelledby="damageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="damageModalLabel"><i class="bi bi-cone-striped"></i> বইয়ের ক্ষতির তথ্য</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small">ক্ষতির বিবরণ Fine Management মডিউলকে অতিরিক্ত জরিমানার জন্য পাঠানো হবে।</p>
+                    <select class="form-select mb-3">
+                        <option selected>কোন বইটি ক্ষতিগ্রস্ত হয়েছে?</option>
+                        <option value="1">আধুনিক সফটওয়্যার ডিজাইন</option>
+                        <option value="2">ক্লাউড কম্পিউটিং</option>
+                    </select>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="ক্ষতির বিবরণ লিখুন" style="height: 100px"></textarea>
+                        <label>ক্ষতির বিবরণ</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-danger"><i class="bi bi-save-fill"></i> রিপোর্ট সেভ করুন</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
