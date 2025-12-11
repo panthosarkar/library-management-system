@@ -1,57 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Management</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    h2 { margin-bottom: 10px; }
-    form { margin-bottom: 20px; }
-    input, select {
-      padding: 6px;
-      margin: 5px 0;
-      width: 250px;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
     }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .add-user {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #0056c7;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
     }
-    table, th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    .action-btns button {
+      padding: 6px 10px;
+      font-size: 14px;
+      margin-right: 6px;
+    }
+
+    .edit {
+      background: #28a745;
+    }
+    .edit:hover {
+      background: #1f7f36;
+    }
+
+    .delete {
+      background: #dc3545;
+    }
+    .delete:hover {
+      background: #b62634;
     }
   </style>
 </head>
-
 <body>
+  <div class="container">
+    <h1>User Management Page</h1>
 
-  <h2>Add User</h2>
-  <form>
-    <input type="text" placeholder="Full Name" required><br>
-    <input type="email" placeholder="Email" required><br>
-    <select>
-      <option>User</option>
-      <option>Admin</option>
-      <option>Librarian</option>
-    </select><br>
-    <button type="submit">Add User</button>
-  </form>
+    <div class="add-user">
+      <input type="text" placeholder="Enter user name" />
+      <input type="email" placeholder="Enter email" />
+      <button>Add User</button>
+    </div>
 
-  <h2>User List</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Action</th>
-    </tr>
-    <tr>
-      <td>Ismat Nabiha</td>
-      <td>example@mail.com</td>
-      <td>User</td>
-      <td><button>Edit</button> <button>Delete</button></td>
-    </tr>
-  </table>
-
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ismat Nabiha</td>
+          <td>nabiha@example.com</td>
+          <td class="action-btns">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Trisha</td>
+          <td>trisha@example.com</td>
+          <td class="action-btns">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+         <tr>
+          <td>Ismat Nabiha</td>
+          <td>nabiha@example.com</td>
+          <td class="action-btns">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
