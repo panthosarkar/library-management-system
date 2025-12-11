@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Management System (All in One)</title>
+    <title>My Unique Book Library (59 Books)</title>
     
     <style>
+        /* --- GENERAL STYLING --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,15 +14,51 @@
             color: #333;
         }
 
+        /* --- ✨ ENHANCED HEADER STYLING (NEW) --- */
         header {
-            background-color: #4CAF50; /* Green Header */
+            /* Changed Gradient: Deep Teal to Mint Green (Nature/Library Theme) */
+            background: linear-gradient(135deg, #008080, #3cb371); 
             color: white;
-            padding: 20px 0;
+            padding: 25px 0;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin for separation */
+            /* Enhanced 3D Shadow */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
+            position: relative;
+            overflow: hidden; /* To contain the curved effect */
+        }
+        
+        header h1 {
+            font-size: 1.5em; /* Slightly larger text */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for pop */
+            font-weight: 700;
         }
 
-        /* Book Grid Layout */
+        header .icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+        }
+        
+        /* Gold Accent Line (Wavy Effect) */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            /* Curved/Wavy Effect using box-shadow and border-radius */
+            background: #ffc107; /* Gold/Yellow Accent */
+            border-radius: 50% / 0 0 10px 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+
+        /* --- BOOK GRID LAYOUT --- */
         .book-grid {
             display: flex;
             flex-wrap: wrap;
@@ -40,6 +77,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: transform 0.2s;
+            position: relative;
         }
 
         .book-card:hover {
@@ -50,40 +88,63 @@
         .book-card img {
             width: 100%;
             height: auto;
-            max-height: 250px;
+            max-height: 250px; 
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 10px;
         }
+        
+        .book-card h3 {
+            margin: 5px 0 10px 0;
+            color: #333;
+            font-size: 16px;
+            min-height: 40px;
+        }
+        
+        .book-card .book-id {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: #ffc107; /* Gold color maintained for ID badge */
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 12px;
+            border: 2px solid white; /* White border for emphasis */
+        }
 
-        /* Modal Styling */
+
+        /* --- MODAL STYLING --- */
         .modal {
-            display: none; /* PROTHOME HIDE KORA THAKBE */
+            display: none; 
             position: fixed; 
-            z-index: 10; 
+            z-index: 100; 
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4); 
+            background-color: rgba(0,0,0,0.6); 
         }
 
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto; 
-            padding: 20px;
+            padding: 30px 30px 130px 30px;
             border: 1px solid #888;
-            width: 80%;
+            width: 90%;
             max-width: 600px;
             border-radius: 10px;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: left;
         }
 
         .modal-content img {
             width: 150px;
             height: auto;
+            max-height: 200px; 
             float: right;
             margin-left: 20px;
             border-radius: 4px;
@@ -98,7 +159,7 @@
 
         .close-button:hover,
         .close-button:focus {
-            color: #4CAF50;
+            color: #3cb371; /* Hover color matches new header color */
             text-decoration: none;
             cursor: pointer;
         }
@@ -106,56 +167,1028 @@
 </head>
 <body>
     <header>
-        <h1>📚 Basic Book Library</h1>
+        <h1><span class="icon">📖</span> Book Library (59 Books)</h1>
     </header>
 
     <div class="book-grid">
+        
+        
         <div class="book-card" onclick="showBookDetails('book1')">
-            <img src="book-cover-placeholder.jpg" alt="Book Cover 1">
-            <h3>The Great Novel</h3>
-            <p>Author: John Doe</p>
+            <span class="book-id">1</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/100_great_marketing_idea-Jim_Blythe-6e504-417994.jpeg" alt="100 Great Marketing Ideas">
+            <h3>১০০ গ্রেট মার্কেটিং আইডিয়াস</h3>
+            <p>লেখক: জিমি ব্রাউন</p>
         </div>
 
         <div class="book-card" onclick="showBookDetails('book2')">
-            <img src="book-cover-placeholder.jpg" alt="Book Cover 2">
-            <h3>CSS Master</h3>
-            <p>Author: Jane Smith</p>
+            <span class="book-id">2</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Content_writing-Ann_Handley-345ca-417983.jpeg" alt="Content Writing">
+            <h3>কমপ্লিট কন্টেন্ট রাইটিং</h3>
+            <p>লেখক: আলান ম্যারফি</p>
         </div>
 
+        <div class="book-card" onclick="showBookDetails('book3')">
+            <span class="book-id">3</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Developing_the_Leader_Within_You-John_C_Maxwell-49ac8-426416.jpg" alt="Developing the Leader Within You">
+            <h3>ডেভেলপিং দা লীডার উইদিন ইউ</h3>
+            <p>লেখক: জন সি. ম্যাক্সওয়েল</p>
         </div>
+
+        <div class="book-card" onclick="showBookDetails('book4')">
+            <span class="book-id">4</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/The_five_second_rule-Mel_Robbins-587fb-336482.png" alt="5 Second Rule">
+            <h3>দা ফাইভ সেকেন্ড রুল</h3>
+            <p>লেখক: মেল রবিন্স</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book5')">
+            <span class="book-id">5</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Boronio_Jara_Soronio_Jara-Dale_Carnegie-b3877-270595.jpg" alt="Boronio Jara Soronio Jara">
+            <h3>বরণীয় যারা স্মরণীয় যারা</h3>
+            <p>লেখক: ডেল কার্নেগি</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book6')">
+            <span class="book-id">6</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/The_Power_of_your_subconscious_mind_-Joseph_Murphy-92d07-336452.png" alt="The Power of Your Subconscious Mind">
+            <h3>দ্য পাওয়ার অব ইওর সাবকনশাস মাইন্ড</h3>
+            <p>লেখক: জোসেফ মারফি</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book7')">
+            <span class="book-id">7</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Successful_Selling-Brian_Tracy-a0aa2-523923.jpg" alt="Successful Selling">
+            <h3>সাকসেসফুল সেলিং</h3>
+            <p>লেখক: ব্রায়ান ট্রেসি</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book8')">
+            <span class="book-id">8</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/9b49eab33_74898.jpg" alt="ছয়টি উপন্যাস">
+            <h3>ছয়টি উপন্যাস</h3>
+            <p>লেখক: বিভিন্ন লেখক</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book9')">
+            <span class="book-id">9</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/e2908cb21a94_31662.gif" alt="রবীন্দ্রসঙ্গীতের বিভিন্ন স্তর">
+            <h3>রবীন্দ্রসঙ্গীতের বিভিন্ন স্তর</h3>
+            <p>লেখক: অমিয় কুমার</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book10')">
+            <span class="book-id">10</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/84de8e8fb_69257.jpg" alt="দশটি উপন্যাস">
+            <h3>দশটি উপন্যাস</h3>
+            <p>লেখক: বিমল কর</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book11')">
+            <span class="book-id">11</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Opekkha-Humayun_Ahmed-9a14b-222273.png" alt="অপেক্ষা">
+            <h3>অপেক্ষা</h3>
+            <p>লেখক: হুমায়ূন আহমেদ</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book12')">
+            <span class="book-id">12</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Office_Associate_Computer_Operator_Job_S-Edulite_Sompadona_Porshod-563cf-371301.jpeg" alt="অফিস সহকারী, কম্পিউটার অপারেটর জব সল্যুশন">
+            <h3>অফিস সহকারী, কম্পিউটার অপারেটর জব সল্যুশন</h3>
+            <p>লেখক: এডুলাইট সম্পাদনা পর্ষদ</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book13')">
+            <span class="book-id">13</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Dictionary_of_boys_and_girls_names-Sheikh_Abdul_Hamid_Faizi_Madani-3d47d-224650.jpg" alt="ছেলে-মেয়েদের নাম অভিধান">
+            <h3>ছেলে-মেয়েদের নাম অভিধান</h3>
+            <p>লেখক: শেখ আব্দুল হামিদ ফায়েজী মাদানী</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book14')">
+            <span class="book-id">14</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Suspense_Somogro-Anish_Das_Apu-0b75e-376930.jpg" alt="সাসপেন্স সমগ্র">
+            <h3>সাসপেন্স সমগ্র</h3>
+            <p>লেখক: আনিস দাস অপু</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book15')">
+            <span class="book-id">15</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Master_Your_Emotions-Thibaut_Meurisse-16fc5-270710.png" alt="মাস্টার ইয়োর ইমোশনস">
+            <h3>মাস্টার ইয়োর ইমোশনস</h3>
+            <p>লেখক: থিবোত মেরিষে</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book16')">
+            <span class="book-id">16</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Uddesshohin_ar_koto_din_-Ustad_Mohammad_Hoblos-f0b41-288507.jpg" alt="উদ্দেশ্যহীন আর কত দিন?">
+            <h3>উদ্দেশ্যহীন আর কত দিন?</h3>
+            <p>লেখক: উস্তাদ মোহাম্মদ হবলোস</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book17')">
+            <span class="book-id">17</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Nofser_Dhoka_o_Atmoniyontron-Habib_Kadri-321fc-338154.jpg" alt="নফসের ধোঁকা ও আত্মনিয়ন্ত্রণ">
+            <h3>নফসের ধোঁকা ও আত্মনিয়ন্ত্রণ</h3>
+            <p>লেখক: হাবিব কাদরী</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book18')">
+            <span class="book-id">18</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/1ff4816f4_189792.jpg" alt="রবীন্দ্রনাথের চাকর-বাকর">
+            <h3>রবীন্দ্রনাথের চাকর-বাকর</h3>
+            <p>লেখক: সুবিনয় রায়চৌধুরী</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book19')">
+            <span class="book-id">19</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/c7e043219_190011.gif" alt="বাউল শিরোমণি লালন শাহ্">
+            <h3>বাউল শিরোমণি লালন শাহ্</h3>
+            <p>লেখক: আবুল আহসান চৌধুরী</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book20')">
+            <span class="book-id">20</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/ff1b562a6_174037.jpg" alt="নজরুলের সংগীত জীবন">
+            <h3>নজরুলের সংগীত জীবন</h3>
+            <p>লেখক: সুধীন দাশ</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book21')">
+            <span class="book-id">21</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Hayre_hay_Bangladesh-Ajom_Khan-d5536-274008.jpg" alt="হায়রে হায় বাংলাদেশ">
+            <h3>হায়রে হায় বাংলাদেশ</h3>
+            <p>লেখক: আজম খান</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book22')">
+            <span class="book-id">22</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/827f3f1099b4_116813.gif" alt="রঙ্গপুরের জাগের গান">
+            <h3>রঙ্গপুরের জাগের গান</h3>
+            <p>লেখক: অমূল্য ভূষণ</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book23')">
+            <span class="book-id">23</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/cf97c37c0_36250.jpg" alt="পদবির উৎসসন্ধান">
+            <h3>পদবির উৎসসন্ধান</h3>
+            <p>লেখক: মোঃ আবু তালিব</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book24')">
+            <span class="book-id">24</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/e65a78017e44_119071.gif" alt="পৌণ্ড্রবর্দ্ধন ও করতোয়া">
+            <h3>পৌণ্ড্রবর্দ্ধন ও করতোয়া</h3>
+            <p>লেখক: আবুল কালাম মোহাম্মদ সিদ্দীক</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book25')">
+            <span class="book-id">25</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/9c647e62c5e4_111081.gif" alt="সুন্দরবনের মানুষ">
+            <h3>সুন্দরবনের মানুষ</h3>
+            <p>লেখক: সুশান্ত মজুমদার</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book26')">
+            <span class="book-id">26</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/808a594c9_11108.jpg" alt="হাতের মুঠোয় সাংবাদিকতা">
+            <h3>হাতের মুঠোয় সাংবাদিকতা</h3>
+            <p>লেখক: ড. নাদিরা শারমিন</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book27')">
+            <span class="book-id">27</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/The_Freelance_Investigative_Journalism-Mohsin_Dinu-1c7da-374165.png" alt="দ্য ফ্রিল্যান্স ইনভেস্টিগেটিভ জার্নালিজম">
+            <h3>দ্য ফ্রিল্যান্স ইনভেস্টিগেটিভ জার্নালিজম</h3>
+            <p>লেখক: মহসিন দিনু</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book28')">
+            <span class="book-id">28</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/ab995fbd5_212438.jpg" alt="নিউ মিডিয়া ও ফোকলোর">
+            <h3>নিউ মিডিয়া ও ফোকলোর</h3>
+            <p>লেখক: ড. মো. আব্দুল মজিদ</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book29')">
+            <span class="book-id">29</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/imgu_79710.gif" alt="পাবনায় ভাষা আন্দোলন">
+            <h3>পাবনায় ভাষা আন্দোলন</h3>
+            <p>লেখক: ড. এ.এম.এম. শাফিউল ইসলাম</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book30')">
+            <span class="book-id">30</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Muhammad_The_Ultimate_Leader-Siddique_Swopon-48484-271313.png" alt="মুহাম্মাদ সা. দ্যা আল্টিমেট লিডার">
+            <h3>মুহাম্মাদ সা. দ্যা আল্টিমেট লিডার</h3>
+            <p>লেখক: সিদ্দীক স্বপন</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book31')">
+            <span class="book-id">31</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Ami_Prokriti_Prokritir_Sorup_O_Prokritit-Jahidul_Alam-a21e2-294477.jpg" alt="আমি প্রকৃতি : প্রকৃতির স্বরূপ ও প্রকৃতিতে ব্যক্তির অবস্থান">
+            <h3>আমি প্রকৃতি : প্রকৃতির স্বরূপ ও প্রকৃতিতে ব্যক্তির অবস্থান</h3>
+            <p>লেখক: জাহিদুল আলম</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book32')">
+            <span class="book-id">32</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/f32f461a9_51195.jpg" alt="উন্নয়ন ও স্ব-ক্ষমতা">
+            <h3>উন্নয়ন ও স্ব-ক্ষমতা</h3>
+            <p>লেখক: ফজলুল আলম</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book33')">
+            <span class="book-id">33</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Bangladesher_Durvikkho-Amartya_Sen_-bd4bf-459088.jpg" alt="বাংলাদেশের দুর্ভিক্ষ">
+            <h3>বাংলাদেশের দুর্ভিক্ষ</h3>
+            <p>লেখক: অমর্ত্য সেন</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book34')">
+            <span class="book-id">34</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/9d309bcc1_20261.jpg" alt="The Silent Witness By A General">
+            <h3>The Silent Witness By A General</h3>
+            <p>লেখক: মেজর জেনারেল (অব.) শামস-উদ্দিন আহমদ</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book35')">
+            <span class="book-id">35</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Jemon_Dekhechi_One_Eleven-Ahmed_Musa-3c086-93553.jpg" alt="যেমন দেখেছি ওয়ান ইলেভেন">
+            <h3>যেমন দেখেছি ওয়ান ইলেভেন</h3>
+            <p>লেখক: আহমেদ মুসা</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book36')">
+            <span class="book-id">36</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Prahelika-Nazim_Ud_Daula-5128e-352660.jpg" alt="প্রহেলিকা">
+            <h3>প্রহেলিকা</h3>
+            <p>লেখক: নাজিম উদ দৌলা</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book37')">
+            <span class="book-id">37</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Zobonika-Nazim_Ud_Daula-e2d15-455287.jpg" alt="যবনিকা">
+            <h3>যবনিকা</h3>
+            <p>লেখক: নাজিম উদ দৌলা</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book38')">
+            <span class="book-id">38</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Bloodstone-Nazim_Ud_Daula-ee777-478460.jpg" alt="ব্লাডস্টোন">
+            <h3>ব্লাডস্টোন</h3>
+            <p>লেখক: নাজিম উদ দৌলা</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book39')">
+            <span class="book-id">39</span
+            ><img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Porojibi-Shahriar_Hasan-4996d-385620.jpg" alt="পরজীবী">
+            <h3>পরজীবী</h3>
+            <p>লেখক: শাহরিয়ার হাসান</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book40')">
+            <span class="book-id">40</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Robindonath_Ekhane_Kkhono_Khete_Asenni-Mohammod_Nazim_Uddin-eedf7-97647.jpg" alt="রবীন্দ্রনাথ এখানে কখনও - খেতে আসেননি">
+            <h3>রবীন্দ্রনাথ এখানে কখনও - খেতে আসেননি</h3>
+            <p>লেখক: মোহাম্মদ নাজিম উদ্দিন</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book41')">
+            <span class="book-id">41</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/c165a431c4a4_33654.jpg" alt="নেমেসিস">
+            <h3>নেমেসিস</h3>
+            <p>লেখক: মোহাম্মদ নাজিম উদ্দিন</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book42')">
+            <span class="book-id">42</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Dokhol-Latiful_islam_Shibli-f84b6-327028.png" alt="দখল">
+            <h3>দখল</h3>
+            <p>লেখক: লতিফুল ইসলাম শিবলী</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book43')">
+            <span class="book-id">43</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/A_Mrithu_valobashi_toka_-Salma_Choudhury-e5d52-445228.jpg" alt="আমৃত্যু ভালোবাসি তোকে">
+            <h3>আমৃত্যু ভালোবাসি তোকে</h3>
+            <p>লেখক: সালমা চৌধুরী</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book44')">
+            <span class="book-id">44</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/kuhelika-Nazim_Ud_Daula-7f8cf-405258.jpg" alt="কুহেলিকা">
+            <h3>কুহেলিকা</h3>
+            <p>লেখক: নাজিম উদ দৌলা</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book45')">
+            <span class="book-id">45</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/f708833f6_206311.jpg" alt="তোমার নামে সন্ধ্যা নামে">
+            <h3>তোমার নামে সন্ধ্যা নামে</h3>
+            <p>লেখক: মারুফুল ইসলাম</p>
+        </div>
+        
+        <div class="book-card" onclick="showBookDetails('book46')">
+            <span class="book-id">46</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/c08a36f80_1326.jpg" alt="তিথির নীল তোয়ালে">
+            <h3>তিথির নীল তোয়ালে</h3>
+            <p>লেখক: হুমায়ূন আহমেদ</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book47')">
+            <span class="book-id">47</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/img141201_1336.gif" alt="শূন্য">
+            <h3>শূন্য</h3>
+            <p>লেখক: সমরেশ মজুমদার</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book48')">
+            <span class="book-id">48</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/e71eda8aa_1171.jpg" alt="বাদশাহ নামদার">
+            <h3>বাদশাহ নামদার</h3>
+            <p>লেখক: হুমায়ূন আহমেদ</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book49')">
+            <span class="book-id">49</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/0ee42cf84_212258.jpg" alt="অস্তিত্ব">
+            <h3>অস্তিত্ব</h3>
+            <p>লেখক: সমরেশ মজুমদার</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book50')">
+            <span class="book-id">50</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/The_English_Patient-Michael_Ondaatje-10bfe-344340.jpg" alt="The English Patient">
+            <h3>The English Patient</h3>
+            <p>লেখক: Michael Ondaatje</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book51')">
+            <span class="book-id">51</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Chander_Pahar-Bibhutibhusan_Bandyopadhyay-8026c-346689.jpg" alt="চাঁদের পাহাড়">
+            <h3>চাঁদের পাহাড়</h3>
+            <p>লেখক: বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book52')">
+            <span class="book-id">52</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/5a2371213_9326.jpg" alt="পথের পাঁচালী">
+            <h3>পথের পাঁচালী</h3>
+            <p>লেখক: বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book53')">
+            <span class="book-id">53</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/Aronok-Bivutivushon_Bondopadhai-1ecc0-40796.jpg" alt="আরণ্যক">
+            <h3>আরণ্যক</h3>
+            <p>লেখক: বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book54')">
+            <span class="book-id">54</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Aasman-Latiful_islam_Shibli-3695e-289772.png" alt="আসমান">
+            <h3>আসমান</h3>
+            <p>লেখক: লতিফুল ইসলাম শিবলী</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book55')">
+            <span class="book-id">55</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/5a29542e9_73658.jpg" alt="দেবদাস">
+            <h3>দেবদাস</h3>
+            <p>লেখক: শরৎচন্দ্র চট্টোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book56')">
+            <span class="book-id">56</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/986b9af6e234_114944.jpg" alt="পরিনীতা">
+            <h3>পরিনীতা</h3>
+            <p>লেখক: শরৎচন্দ্র চট্টোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book57')">
+            <span class="book-id">57</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/dc53650e1fd4_127657.jpg" alt="চরিত্রহীন">
+            <h3>চরিত্রহীন</h3>
+            <p>লেখক: শরৎচন্দ্র চট্টোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book58')">
+            <span class="book-id">58</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/9a97b1cb1_207130.jpg" alt="পুতুল নাচের ইতিকথা">
+            <h3>পুতুল নাচের ইতিকথা</h3>
+            <p>লেখক: মানিক বন্দ্যোপাধ্যায়</p>
+        </div>
+
+        <div class="book-card" onclick="showBookDetails('book59')">
+            <span class="book-id">59</span>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/260X372/6145f9462_99337.jpg" alt="পদ্মানদীর মাঝি">
+            <h3>পদ্মানদীর মাঝি</h3>
+            <p>লেখক: মানিক বন্দ্যোপাধ্যায়</p>
+        </div>
+
+        
+    </div>
 
     <div id="book1-details" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('book1-details')">&times;</span>
-            <h2>The Great Novel (Details)</h2>
-            <img src="book-cover-placeholder.jpg" alt="Book Cover 1 (Big)">
-            <p><strong>Author:</strong> John Doe</p>
-            <p><strong>Published:</strong> 2023</p>
-            <p><strong>Summary:</strong> This is the detailed summary for The Great Novel.</p>
+            <h2>১০০ গ্রেট মার্কেটিং আইডিয়াস (বিস্তারিত) - ID 1</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/100_great_marketing_idea-Jim_Blythe-6e504-417994.jpeg" alt="100 Marketing Ideas (Big)">
+            <p><strong>লেখক:</strong> জিমি ব্রাউন</p>
+            <p><strong>Summary:</strong> মার্কেটিং দুনিয়ার ১০০টি সফল ধারণা এবং কৌশল নিয়ে লেখা একটি গুরুত্বপূর্ণ বই।</p>
         </div>
     </div>
 
     <div id="book2-details" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('book2-details')">&times;</span>
-            <h2>CSS Master (Details)</h2>
-            <img src="book-cover-placeholder.jpg" alt="Book Cover 2 (Big)">
-            <p><strong>Author:</strong> Jane Smith</p>
-            <p><strong>Published:</strong> 2024</p>
-            <p><strong>Summary:</strong> A comprehensive guide to modern CSS techniques.</p>
+            <h2>কমপ্লিট কন্টেন্ট রাইটিং (বিস্তারিত) - ID 2</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Content_writing-Ann_Handley-345ca-417983.jpeg" alt="Content Writing (Big)">
+            <p><strong>লেখক:</strong> আলান ম্যারফি</p>
+            <p><strong>Summary:</strong> কিভাবে সফল কনটেন্ট লেখা যায়, তার বিস্তারিত নির্দেশিকা এই বইতে রয়েছে।</p>
+        </div>
+    </div>
+    
+    <div id="book3-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book3-details')">&times;</span>
+            <h2>ডেভেলপিং দা লীডার উইদিন ইউ (বিস্তারিত) - ID 3</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Developing_the_Leader_Within_You-John_C_Maxwell-49ac8-426416.jpg" alt="Developing the Leader (Big)">
+            <p><strong>লেখক:</strong> জন সি. ম্যাক্সওয়েল</p>
+            <p><strong>Summary:</strong> নিজের মধ্যে নেতৃত্ব বিকাশের জন্য ধাপে ধাপে নির্দেশিকা, যা আপনাকে সফল হতে সাহায্য করবে।</p>
+        </div>
+    </div>
+
+    <div id="book4-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book4-details')">&times;</span>
+            <h2>দা ফাইভ সেকেন্ড রুল (বিস্তারিত) - ID 4</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/The_five_second_rule-Mel_Robbins-587fb-336482.png" alt="5 Second Rule (Big)">
+            <p><strong>লেখক:</strong> মেল রবিন্স</p>
+            <p><strong>Summary:</strong> কিভাবে মাত্র ৫ সেকেন্ডে নিজের মনকে অ্যাকশনে রূপান্তর করা যায় এবং জীবন পরিবর্তন করা যায়—তাই এই বইয়ের মূল বিষয়।</p>
+        </div>
+    </div>
+    
+    <div id="book5-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book5-details')">&times;</span>
+            <h2>বরণীয় যারা স্মরণীয় যারা (বিস্তারিত) - ID 5</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Boronio_Jara_Soronio_Jara-Dale_Carnegie-b3877-270595.jpg" alt="Boronio Jara Soronio Jara (Big)">
+            <p><strong>লেখক:</strong> ডেল কার্নেগি</p>
+            <p><strong>Summary:</strong> বিভিন্ন বরণীয় ও স্মরণীয় ব্যক্তির জীবনকাহিনী ও তাদের সাফল্যের রহস্য নিয়ে লেখা একটি অনুপ্রেরণামূলক বই।</p>
+        </div>
+    </div>
+
+    <div id="book6-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book6-details')">&times;</span>
+            <h2>দ্য পাওয়ার অব ইওর সাবকনশাস মাইন্ড (বিস্তারিত) - ID 6</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/The_Power_of_your_subconscious_mind_-Joseph_Murphy-92d07-336452.png" alt="The Power of Your Subconscious Mind (Big)">
+            <p><strong>লেখক:</strong> জোসেফ মারফি</p>
+            <p><strong>Summary:</strong> অবচেতন মনের অসাধারণ ক্ষমতাকে কাজে লাগিয়ে কিভাবে জীবনকে পরিবর্তন করা যায়, সেই বিষয়ে বিস্তারিত আলোচনা করা হয়েছে।</p>
+        </div>
+    </div>
+
+    <div id="book7-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book7-details')">&times;</span>
+            <h2>সাকসেসফুল সেলিং (বিস্তারিত) - ID 7</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Successful_Selling-Brian_Tracy-a0aa2-523923.jpg" alt="Successful Selling (Big)">
+            <p><strong>লেখক:</strong> ব্রায়ান ট্রেসি</p>
+            <p><strong>Summary:</strong> সফলভাবে বিক্রি করার সেরা কৌশল ও পদ্ধতিগুলি নিয়ে ব্রায়ান ট্রেসির অসাধারণ নির্দেশিকা।</p>
+        </div>
+    </div>
+    
+    <div id="book8-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book8-details')">&times;</span>
+            <h2>ছয়টি উপন্যাস (বিস্তারিত) - ID 8</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/9b49eab33_74898.jpg" alt="ছয়টি উপন্যাস (Big)">
+            <p><strong>লেখক:</strong> বিভিন্ন লেখক</p>
+            <p><strong>Summary:</strong> এটি ছয়টি ভিন্ন উপন্যাসের একটি সংকলন।</p>
+        </div>
+    </div>
+    
+    <div id="book9-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book9-details')">&times;</span>
+            <h2>রবীন্দ্রসঙ্গীতের বিভিন্ন স্তর (বিস্তারিত) - ID 9</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/e2908cb21a94_31662.gif" alt="রবীন্দ্রসঙ্গীতের বিভিন্ন স্তর (Big)">
+            <p><strong>লেখক:</strong> অমিয় কুমার</p>
+            <p><strong>Summary:</strong> রবীন্দ্রসঙ্গীতের ইতিহাস, শৈলী এবং বিভিন্ন স্তর সম্পর্কে গভীর আলোচনা।</p>
+        </div>
+    </div>
+    
+    <div id="book10-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book10-details')">&times;</span>
+            <h2>দশটি উপন্যাস (বিস্তারিত) - ID 10</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/84de8e8fb_69257.jpg" alt="দশটি উপন্যাস (Big)">
+            <p><strong>লেখক:</strong> বিমল কর</p>
+            <p><strong>Summary:</strong> বিমল করের দশটি জনপ্রিয় উপন্যাসের একটি বিশাল সংকলন।</p>
+        </div>
+    </div>
+    
+    <div id="book11-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book11-details')">&times;</span>
+            <h2>অপেক্ষা (বিস্তারিত) - ID 11</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Opekkha-Humayun_Ahmed-9a14b-222273.png" alt="অপেক্ষা (Big)">
+            <p><strong>লেখক:</strong> হুমায়ূন আহমেদ</p>
+            <p><strong>Summary:</strong> জনপ্রিয় লেখক হুমায়ূন আহমেদের এক মর্মস্পর্শী উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book12-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book12-details')">&times;</span>
+            <h2>অফিস সহকারী, কম্পিউটার অপারেটর জব সল্যুশন (বিস্তারিত) - ID 12</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Office_Associate_Computer_Operator_Job_S-Edulite_Sompadona_Porshod-563cf-371301.jpeg" alt="জব সল্যুশন (Big)">
+            <p><strong>লেখক:</strong> এডুলাইট সম্পাদনা পর্ষদ</p>
+            <p><strong>Summary:</strong> অফিস সহকারী ও কম্পিউটার অপারেটর পদে নিয়োগ পরীক্ষার জন্য সম্পূর্ণ সল্যুশন গাইড।</p>
+        </div>
+    </div>
+
+    <div id="book13-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book13-details')">&times;</span>
+            <h2>ছেলে-মেয়েদের নাম অভিধান (বিস্তারিত) - ID 13</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Dictionary_of_boys_and_girls_names-Sheikh_Abdul_Hamid_Faizi_Madani-3d47d-224650.jpg" alt="নাম অভিধান (Big)">
+            <p><strong>লেখক:</strong> শেখ আব্দুল হামিদ ফায়েজী মাদানী</p>
+            <p><strong>Summary:</strong> ছেলে ও মেয়েদের জন্য ইসলামিক ও আধুনিক নামের অর্থসহ একটি অভিধান।</p>
+        </div>
+    </div>
+
+    <div id="book14-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book14-details')">&times;</span>
+            <h2>সাসপেন্স সমগ্র (বিস্তারিত) - ID 14</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Suspense_Somogro-Anish_Das_Apu-0b75e-376930.jpg" alt="সাসপেন্স সমগ্র (Big)">
+            <p><strong>লেখক:</strong> আনিস দাস অপু</p>
+            <p><strong>Summary:</strong> সাসপেন্স থ্রিলার গল্পের এক বিশাল সংকলন।</p>
+        </div>
+    </div>
+
+    <div id="book15-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book15-details')">&times;</span>
+            <h2>মাস্টার ইয়োর ইমোশনস (বিস্তারিত) - ID 15</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Master_Your_Emotions-Thibaut_Meurisse-16fc5-270710.png" alt="Master Your Emotions (Big)">
+            <p><strong>লেখক:</strong> থিবোত মেরিষে</p>
+            <p><strong>Summary:</strong> আবেগ নিয়ন্ত্রণ করে জীবনের লক্ষ্য অর্জনের জন্য একটি কার্যকরী নির্দেশিকা।</p>
+        </div>
+    </div>
+    
+    <div id="book16-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book16-details')">&times;</span>
+            <h2>উদ্দেশ্যহীন আর কত দিন? (বিস্তারিত) - ID 16</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Uddesshohin_ar_koto_din_-Ustad_Mohammad_Hoblos-f0b41-288507.jpg" alt="উদ্দেশ্যহীন আর কত দিন? (Big)">
+            <p><strong>লেখক:</strong> উস্তাদ মোহাম্মদ হবলোস</p>
+            <p><strong>Summary:</strong> জীবনের উদ্দেশ্য খুঁজে বের করা এবং সময়কে সঠিকভাবে কাজে লাগানোর বিষয়ে একটি উদ্দীপক বই।</p>
+        </div>
+    </div>
+    
+    <div id="book17-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book17-details')">&times;</span>
+            <h2>নফসের ধোঁকা ও আত্মনিয়ন্ত্রণ (বিস্তারিত) - ID 17</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Nofser_Dhoka_o_Atmoniyontron-Habib_Kadri-321fc-338154.jpg" alt="নফসের ধোঁকা ও আত্মনিয়ন্ত্রণ (Big)">
+            <p><strong>লেখক:</strong> হাবিব কাদরী</p>
+            <p><strong>Summary:</strong> নফস (আত্মা)-এর প্রতারণা থেকে বাঁচার উপায় এবং আত্মনিয়ন্ত্রণের কৌশল সম্পর্কে একটি ইসলামিক বই।</p>
+        </div>
+    </div>
+
+    <div id="book18-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book18-details')">&times;</span>
+            <h2>রবীন্দ্রনাথের চাকর-বাকর (বিস্তারিত) - ID 18</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/1ff4816f4_189792.jpg" alt="রবীন্দ্রনাথের চাকর-বাকর (Big)">
+            <p><strong>লেখক:</strong> সুবিনয় রায়চৌধুরী</p>
+            <p><strong>Summary:</strong> রবীন্দ্রনাথ ঠাকুরের বাড়িতে কর্মরত কর্মচারী ও তাদের সঙ্গে কবির সম্পর্ক নিয়ে একটি চমৎকার গ্রন্থ।</p>
+        </div>
+    </div>
+    
+    <div id="book19-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book19-details')">&times;</span>
+            <h2>বাউল শিরোমণি লালন শাহ্ (বিস্তারিত) - ID 19</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/c7e043219_190011.gif" alt="বাউল শিরোমণি লালন শাহ্ (Big)">
+            <p><strong>লেখক:</strong> আবুল আহসান চৌধুরী</p>
+            <p><strong>Summary:</strong> বাউল সম্রাট লালন শাহ্-এর জীবন, দর্শন এবং গান নিয়ে বিশদ আলোচনা।</p>
+        </div>
+    </div>
+    
+    <div id="book20-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book20-details')">&times;</span>
+            <h2>নজরুলের সংগীত জীবন (বিস্তারিত) - ID 20</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/ff1b562a6_174037.jpg" alt="নজরুলের সংগীত জীবন (Big)">
+            <p><strong>লেখক:</strong> সুধীন দাশ</p>
+            <p><strong>Summary:</strong> কাজী নজরুল ইসলামের সংগীত জীবনের বিভিন্ন দিক ও তাঁর গানের গভীরতা নিয়ে আলোচনা।</p>
+        </div>
+    </div>
+
+    <div id="book21-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book21-details')">&times;</span>
+            <h2>হায়রে হায় বাংলাদেশ (বিস্তারিত) - ID 21</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Hayre_hay_Bangladesh-Ajom_Khan-d5536-274008.jpg" alt="হায়রে হায় বাংলাদেশ (Big)">
+            <p><strong>লেখক:</strong> আজম খান</p>
+            <p><strong>Summary:</strong> বাংলাদেশ সংক্রান্ত নানা সামাজিক ও রাজনৈতিক বিষয় নিয়ে একটি সমালোচনামূলক গ্রন্থ।</p>
+        </div>
+    </div>
+
+    <div id="book22-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book22-details')">&times;</span>
+            <h2>রঙ্গপুরের জাগের গান (বিস্তারিত) - ID 22</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/827f3f1099b4_116813.gif" alt="রঙ্গপুরের জাগের গান (Big)">
+            <p><strong>লেখক:</strong> অমূল্য ভূষণ</p>
+            <p><strong>Summary:</strong> রংপুর অঞ্চলের লোকসংগীত 'জাগের গান' ও এর ইতিহাস নিয়ে গবেষণামূলক গ্রন্থ।</p>
+        </div>
+    </div>
+
+    <div id="book23-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book23-details')">&times;</span>
+            <h2>পদবির উৎসসন্ধান (বিস্তারিত) - ID 23</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/cf97c37c0_36250.jpg" alt="পদবির উৎসসন্ধান (Big)">
+            <p><strong>লেখক:</strong> মোঃ আবু তালিব</p>
+            <p><strong>Summary:</strong> বাংলা পদবি বা বংশের নামের উৎস ও ইতিহাস খুঁজে বের করার একটি গুরুত্বপূর্ণ গ্রন্থ।</p>
+        </div>
+    </div>
+
+    <div id="book24-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book24-details')">&times;</span>
+            <h2>পৌণ্ড্রবর্দ্ধন ও করতোয়া (বিস্তারিত) - ID 24</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/e65a78017e44_119071.gif" alt="পৌণ্ড্রবর্দ্ধন ও করতোয়া (Big)">
+            <p><strong>লেখক:</strong> আবুল কালাম মোহাম্মদ সিদ্দীক</p>
+            <p><strong>Summary:</strong> প্রাচীন পৌণ্ড্রবর্দ্ধন এবং করতোয়া নদীর ইতিহাস ও ভৌগোলিক গুরুত্ব নিয়ে আলোচনা।</p>
+        </div>
+    </div>
+
+    <div id="book25-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book25-details')">&times;</span>
+            <h2>সুন্দরবনের মানুষ (বিস্তারিত) - ID 25</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/9c647e62c5e4_111081.gif" alt="সুন্দরবনের মানুষ (Big)">
+            <p><strong>লেখক:</strong> সুশান্ত মজুমদার</p>
+            <p><strong>Summary:</strong> সুন্দরবনের জীবনযাত্রা, সংস্কৃতি এবং সেখানকার মানুষের সংগ্রামের কাহিনি।</p>
+        </div>
+    </div>
+
+    <div id="book26-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book26-details')">&times;</span>
+            <h2>হাতের মুঠোয় সাংবাদিকতা (বিস্তারিত) - ID 26</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/808a594c9_11108.jpg" alt="হাতের মুঠোয় সাংবাদিকতা (Big)">
+            <p><strong>লেখক:</strong> ড. নাদিরা শারমিন</p>
+            <p><strong>Summary:</strong> আধুনিক সাংবাদিকতার মূলনীতি ও কৌশল নিয়ে লেখা একটি ব্যবহারিক নির্দেশিকা।</p>
+        </div>
+    </div>
+
+    <div id="book27-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book27-details')">&times;</span>
+            <h2>দ্য ফ্রিল্যান্স ইনভেস্টিগেটিভ জার্নালিজম (বিস্তারিত) - ID 27</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/The_Freelance_Investigative_Journalism-Mohsin_Dinu-1c7da-374165.png" alt="দ্য ফ্রিল্যান্স ইনভেস্টিগেটিভ জার্নালিজম (Big)">
+            <p><strong>লেখক:</strong> মহসিন দিনু</p>
+            <p><strong>Summary:</strong> ফ্রিল্যান্স অনুসন্ধানী সাংবাদিকতার পদ্ধতি এবং চ্যালেঞ্জ নিয়ে একটি নির্দেশিকা।</p>
+        </div>
+    </div>
+
+    <div id="book28-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book28-details')">&times;</span>
+            <h2>নিউ মিডিয়া ও ফোকলোর (বিস্তারিত) - ID 28</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/ab995fbd5_212438.jpg" alt="নিউ মিডিয়া ও ফোকলোর (Big)">
+            <p><strong>লেখক:</strong> ড. মো. আব্দুল মজিদ</p>
+            <p><strong>Summary:</strong> নতুন মিডিয়াতে লোকসাহিত্য (ফোকলোর)-এর প্রভাব এবং এর ভবিষ্যৎ নিয়ে একটি গবেষণা।</p>
+        </div>
+    </div>
+    
+    <div id="book29-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book29-details')">&times;</span>
+            <h2>পাবনায় ভাষা আন্দোলন (বিস্তারিত) - ID 29</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/imgu_79710.gif" alt="পাবনায় ভাষা আন্দোলন (Big)">
+            <p><strong>লেখক:</strong> ড. এ.এম.এম. শাফিউল ইসলাম</p>
+            <p><strong>Summary:</strong> পাবনা জেলায় ১৯৫২ সালের ভাষা আন্দোলনের স্থানীয় ইতিহাস ও ভূমিকা।</p>
+        </div>
+    </div>
+    
+    <div id="book30-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book30-details')">&times;</span>
+            <h2>মুহাম্মাদ সা. দ্যা আল্টিমেট লিডার (বিস্তারিত) - ID 30</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Muhammad_The_Ultimate_Leader-Siddique_Swopon-48484-271313.png" alt="মুহাম্মাদ সা. দ্যা আল্টিমেট লিডার (Big)">
+            <p><strong>লেখক:</strong> সিদ্দীক স্বপন</p>
+            <p><strong>Summary:</strong> মহানবী হযরত মুহাম্মদ (সাঃ)-এর জীবনকে একজন সফল নেতা হিসেবে বিশ্লেষণ।</p>
+        </div>
+    </div>
+    
+    <div id="book31-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book31-details')">&times;</span>
+            <h2>আমি প্রকৃতি : প্রকৃতির স্বরূপ ও প্রকৃতিতে ব্যক্তির অবস্থান (বিস্তারিত) - ID 31</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Ami_Prokriti_Prokritir_Sorup_O_Prokritit-Jahidul_Alam-a21e2-294477.jpg" alt="আমি প্রকৃতি (Big)">
+            <p><strong>লেখক:</strong> জাহিদুল আলম</p>
+            <p><strong>Summary:</strong> প্রকৃতি, এর স্বরূপ এবং এই বিশ্বজগতে মানুষের অবস্থান নিয়ে একটি দার্শনিক আলোচনা।</p>
+        </div>
+    </div>
+    
+    <div id="book32-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book32-details')">&times;</span>
+            <h2>উন্নয়ন ও স্ব-ক্ষমতা (বিস্তারিত) - ID 32</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/f32f461a9_51195.jpg" alt="উন্নয়ন ও স্ব-ক্ষমতা (Big)">
+            <p><strong>লেখক:</strong> ফজলুল আলম</p>
+            <p><strong>Summary:</strong> উন্নয়ন প্রক্রিয়া এবং ব্যক্তিগত বা সামাজিক স্ব-ক্ষমতা অর্জনের ধারণা নিয়ে একটি বিশ্লেষণ।</p>
+        </div>
+    </div>
+    
+    <div id="book33-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book33-details')">&times;</span>
+            <h2>বাংলাদেশের দুর্ভিক্ষ (বিস্তারিত) - ID 33</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Bangladesher_Durvikkho-Amartya_Sen_-bd4bf-459088.jpg" alt="বাংলাদেশের দুর্ভিক্ষ (Big)">
+            <p><strong>লেখক:</strong> অমর্ত্য সেন</p>
+            <p><strong>Summary:</strong> অর্থনীতিবিদ অমর্ত্য সেনের বাংলাদেশের দুর্ভিক্ষ নিয়ে গবেষণা ও বিশ্লেষণ।</p>
+        </div>
+    </div>
+    
+    <div id="book34-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book34-details')">&times;</span>
+            <h2>The Silent Witness By A General (বিস্তারিত) - ID 34</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/9d309bcc1_20261.jpg" alt="The Silent Witness (Big)">
+            <p><strong>লেখক:</strong> মেজর জেনারেল (অব.) শামস-উদ্দিন আহমদ</p>
+            <p><strong>Summary:</strong> একজন জেনারেলের দৃষ্টিকোণ থেকে গুরুত্বপূর্ণ ঐতিহাসিক ঘটনাবলীর নীরব সাক্ষ্য।</p>
+        </div>
+    </div>
+    
+    <div id="book35-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book35-details')">&times;</span>
+            <h2>যেমন দেখেছি ওয়ান ইলেভেন (বিস্তারিত) - ID 35</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Jemon_Dekhechi_One_Eleven-Ahmed_Musa-3c086-93553.jpg" alt="যেমন দেখেছি ওয়ান ইলেভেন (Big)">
+            <p><strong>লেখক:</strong> আহমেদ মুসা</p>
+            <p><strong>Summary:</strong> ২০০৭ সালের ওয়ান ইলেভেন (জরুরি অবস্থা)-এর ঘটনাবলী নিয়ে ব্যক্তিগত অভিজ্ঞতার বর্ণনা।</p>
+        </div>
+    </div>
+
+    <div id="book36-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book36-details')">&times;</span>
+            <h2>প্রহেলিকা (বিস্তারিত) - ID 36</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Prahelika-Nazim_Ud_Daula-5128e-352660.jpg" alt="প্রহেলিকা (Big)">
+            <p><strong>লেখক:</strong> নাজিম উদ দৌলা</p>
+            <p><strong>Summary:</strong> নাজিম উদ দৌলার লেখা একটি রহস্যময় থ্রিলার উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book37-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book37-details')">&times;</span>
+            <h2>যবনিকা (বিস্তারিত) - ID 37</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Zobonika-Nazim_Ud_Daula-e2d15-455287.jpg" alt="যবনিকা (Big)">
+            <p><strong>লেখক:</strong> নাজিম উদ দৌলা</p>
+            <p><strong>Summary:</strong> নাজিম উদ দৌলার আরেকটি সাসপেন্স থ্রিলার যা কাহিনীর শেষ পর্ব নিয়ে লেখা।</p>
+        </div>
+    </div>
+
+    <div id="book38-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book38-details')">&times;</span>
+            <h2>ব্লাডস্টোন (বিস্তারিত) - ID 38</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Bloodstone-Nazim_Ud_Daula-ee777-478460.jpg" alt="ব্লাডস্টোন (Big)">
+            <p><strong>লেখক:</strong> নাজিম উদ দৌলা</p>
+            <p><strong>Summary:</strong> রক্তপাথরকে কেন্দ্র করে রচিত একটি রোমহর্ষক থ্রিলার উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book39-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book39-details')">&times;</span>
+            <h2>পরজীবী (বিস্তারিত) - ID 39</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Porojibi-Shahriar_Hasan-4996d-385620.jpg" alt="পরজীবী (Big)">
+            <p><strong>লেখক:</strong> শাহরিয়ার হাসান</p>
+            <p><strong>Summary:</strong> মানুষের জীবনের উপর পরজীবীর প্রভাব নিয়ে লেখা একটি ভিন্ন ধারার গল্প।</p>
+        </div>
+    </div>
+
+    <div id="book40-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book40-details')">&times;</span>
+            <h2>রবীন্দ্রনাথ এখানে কখনও - খেতে আসেননি (বিস্তারিত) - ID 40</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Robindonath_Ekhane_Kkhono_Khete_Asenni-Mohammod_Nazim_Uddin-eedf7-97647.jpg" alt="রবীন্দ্রনাথ এখানে কখনও - খেতে আসেননি (Big)">
+            <p><strong>লেখক:</strong> মোহাম্মদ নাজিম উদ্দিন</p>
+            <p><strong>Summary:</strong> একটি ব্যতিক্রমী সাসপেন্স থ্রিলার, যা পরবর্তীতে জনপ্রিয় ওয়েব সিরিজ হিসেবে মুক্তি পায়।</p>
+        </div>
+    </div>
+
+    <div id="book41-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book41-details')">&times;</span>
+            <h2>নেমেসিস (বিস্তারিত) - ID 41</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/c165a431c4a4_33654.jpg" alt="নেমেসিস (Big)">
+            <p><strong>লেখক:</strong> মোহাম্মদ নাজিম উদ্দিন</p>
+            <p><strong>Summary:</strong> নাজিম উদ্দিনের লেখা জনপ্রিয় থ্রিলার সিরিজ 'নেমেসিস'-এর প্রথম বই।</p>
+        </div>
+    </div>
+
+    <div id="book42-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book42-details')">&times;</span>
+            <h2>দখল (বিস্তারিত) - ID 42</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Dokhol-Latiful_islam_Shibli-f84b6-327028.png" alt="দখল (Big)">
+            <p><strong>লেখক:</strong> লতিফুল ইসলাম শিবলী</p>
+            <p><strong>Summary:</strong> লতিফুল ইসলাম শিবলীর লেখা একটি জনপ্রিয় উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book43-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book43-details')">&times;</span>
+            <h2>আমৃত্যু ভালোবাসি তোকে (বিস্তারিত) - ID 43</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/A_Mrithu_valobashi_toka_-Salma_Choudhury-e5d52-445228.jpg" alt="আমৃত্যু ভালোবাসি তোকে (Big)">
+            <p><strong>লেখক:</strong> সালমা চৌধুরী</p>
+            <p><strong>Summary:</strong> রোমান্টিক ঘরানার একটি আবেগপূর্ণ উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book44-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book44-details')">&times;</span>
+            <h2>কুহেলিকা (বিস্তারিত) - ID 44</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/kuhelika-Nazim_Ud_Daula-7f8cf-405258.jpg" alt="কুহেলিকা (Big)">
+            <p><strong>লেখক:</strong> নাজিম উদ দৌলা</p>
+            <p><strong>Summary:</strong> নাজিম উদ দৌলার লেখা কুয়াশাচ্ছন্ন রহস্যময় একটি উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book45-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book45-details')">&times;</span>
+            <h2>তোমার নামে সন্ধ্যা নামে (বিস্তারিত) - ID 45</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/f708833f6_206311.jpg" alt="তোমার নামে সন্ধ্যা নামে (Big)">
+            <p><strong>লেখক:</strong> মারুফুল ইসলাম</p>
+            <p><strong>Summary:</strong> মারুফুল ইসলামের লেখা একটি কাব্যিক ও রোমান্টিক উপন্যাস।</p>
+        </div>
+    </div>
+    
+    <div id="book46-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book46-details')">&times;</span>
+            <h2>তিথির নীল তোয়ালে (বিস্তারিত) - ID 46</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/c08a36f80_1326.jpg" alt="তিথির নীল তোয়ালে (Big)">
+            <p><strong>লেখক:</strong> হুমায়ূন আহমেদ</p>
+            <p><strong>Summary:</strong> হুমায়ূন আহমেদের মিষ্টি প্রেমের গল্পের সংকলন।</p>
+        </div>
+    </div>
+
+    <div id="book47-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book47-details')">&times;</span>
+            <h2>শূন্য (বিস্তারিত) - ID 47</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/img141201_1336.gif" alt="শূন্য (Big)">
+            <p><strong>লেখক:</strong> সমরেশ মজুমদার</p>
+            <p><strong>Summary:</strong> সমরেশ মজুমদারের লেখা একটি মনস্তাত্ত্বিক উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book48-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book48-details')">&times;</span>
+            <h2>বাদশাহ নামদার (বিস্তারিত) - ID 48</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/e71eda8aa_1171.jpg" alt="বাদশাহ নামদার (Big)">
+            <p><strong>লেখক:</strong> হুমায়ূন আহমেদ</p>
+            <p><strong>Summary:</strong> মোগল সম্রাট হুমায়ূনের জীবনের উপর ভিত্তি করে লেখা ঐতিহাসিক উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book49-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book49-details')">&times;</span>
+            <h2>অস্তিত্ব (বিস্তারিত) - ID 49</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/0ee42cf84_212258.jpg" alt="অস্তিত্ব (Big)">
+            <p><strong>লেখক:</strong> সমরেশ মজুমদার</p>
+            <p><strong>Summary:</strong> মানব জীবনের অস্তিত্ব ও সম্পর্কের জটিলতা নিয়ে লেখা একটি গভীর উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book50-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book50-details')">&times;</span>
+            <h2>The English Patient (বিস্তারিত) - ID 50</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/The_English_Patient-Michael_Ondaatje-10bfe-344340.jpg" alt="The English Patient (Big)">
+            <p><strong>লেখক:</strong> Michael Ondaatje</p>
+            <p><strong>Summary:</strong> দ্বিতীয় বিশ্বযুদ্ধের পটভূমিতে লেখা একটি বিখ্যাত উপন্যাস, যা পরবর্তীতে চলচ্চিত্র রূপ পায়।</p>
+        </div>
+    </div>
+
+    <div id="book51-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book51-details')">&times;</span>
+            <h2>চাঁদের পাহাড় (বিস্তারিত) - ID 51</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Chander_Pahar-Bibhutibhusan_Bandyopadhyay-8026c-346689.jpg" alt="চাঁদের পাহাড় (Big)">
+            <p><strong>লেখক:</strong> বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+            <p><strong>Summary:</strong> শঙ্কর নামক এক বাঙালি যুবকের আফ্রিকা ভ্রমণের রোমাঞ্চকর কাহিনী।</p>
+        </div>
+    </div>
+
+    <div id="book52-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book52-details')">&times;</span>
+            <h2>পথের পাঁচালী (বিস্তারিত) - ID 52</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/5a2371213_9326.jpg" alt="পথের পাঁচালী (Big)">
+            <p><strong>লেখক:</strong> বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+            <p><strong>Summary:</strong> অপু ও দুর্গা নামের দুই ভাই-বোনের গ্রামীণ জীবন নিয়ে লেখা বিভূতিভূষণের ক্লাসিক উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book53-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book53-details')">&times;</span>
+            <h2>আরণ্যক (বিস্তারিত) - ID 53</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Aronok-Bivutivushon_Bondopadhai-1ecc0-40796.jpg" alt="আরণ্যক (Big)">
+            <p><strong>লেখক:</strong> বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+            <p><strong>Summary:</strong> বিহারের এক প্রত্যন্ত অঞ্চলের অরণ্য ও তার আদিবাসীদের জীবন নিয়ে লেখা একটি অসাধারণ উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book54-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book54-details')">&times;</span>
+            <h2>আসমান (বিস্তারিত) - ID 54</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/Aasman-Latiful_islam_Shibli-3695e-289772.png" alt="আসমান (Big)">
+            <p><strong>লেখক:</strong> লতিফুল ইসলাম শিবলী</p>
+            <p><strong>Summary:</strong> লতিফুল ইসলাম শিবলীর লেখা একটি আবেগপূর্ণ উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book55-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book55-details')">&times;</span>
+            <h2>দেবদাস (বিস্তারিত) - ID 55</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/5a29542e9_73658.jpg" alt="দেবদাস (Big)">
+            <p><strong>লেখক:</strong> শরৎচন্দ্র চট্টোপাধ্যায়</p>
+            <p><strong>Summary:</strong> চিরন্তন প্রেমের ব্যর্থতার করুণ গাথা, যা ভারতীয় সাহিত্যের অন্যতম জনপ্রিয় ক্লাসিক।</p>
+        </div>
+    </div>
+
+    <div id="book56-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book56-details')">&times;</span>
+            <h2>পরিনীতা (বিস্তারিত) - ID 56</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/986b9af6e234_114944.jpg" alt="পরিনীতা (Big)">
+            <p><strong>লেখক:</strong> শরৎচন্দ্র চট্টোপাধ্যায়</p>
+            <p><strong>Summary:</strong> শরৎচন্দ্র চট্টোপাধ্যায়ের লেখা বাল্য-প্রেম ও সামাজিক জটিলতা নিয়ে একটি হৃদয়স্পর্শী উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book57-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book57-details')">&times;</span>
+            <h2>চরিত্রহীন (বিস্তারিত) - ID 57</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/dc53650e1fd4_127657.jpg" alt="চরিত্রহীন (Big)">
+            <p><strong>লেখক:</strong> শরৎচন্দ্র চট্টোপাধ্যায়</p>
+            <p><strong>Summary:</strong> সামাজিক বিধিনিষেধের বিরুদ্ধে নারী-পুরুষের সম্পর্কের জটিলতা নিয়ে শরৎচন্দ্রের অন্যতম বিতর্কিত ও জনপ্রিয় সৃষ্টি।</p>
+        </div>
+    </div>
+
+    <div id="book58-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book58-details')">&times;</span>
+            <h2>পুতুল নাচের ইতিকথা (বিস্তারিত) - ID 58</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/9a97b1cb1_207130.jpg" alt="পুতুল নাচের ইতিকথা (Big)">
+            <p><strong>লেখক:</strong> মানিক বন্দ্যোপাধ্যায়</p>
+            <p><strong>Summary:</strong> গ্রামের ডাক্তার শশী ও বিভিন্ন চরিত্রের মাধ্যমে মানুষের মনস্তত্ত্ব ও ভাগ্যের খেলা নিয়ে লেখা কালজয়ী উপন্যাস।</p>
+        </div>
+    </div>
+
+    <div id="book59-details" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('book59-details')">&times;</span>
+            <h2>পদ্মানদীর মাঝি (বিস্তারিত) - ID 59</h2>
+            <img src="https://rokbucket.rokomari.io/ProductNew20190903/130X186/6145f9462_99337.jpg" alt="পদ্মানদীর মাঝি (Big)">
+            <p><strong>লেখক:</strong> মানিক বন্দ্যোপাধ্যায়</p>
+            <p><strong>Summary:</strong> পদ্মা নদীর তীরের জেলে সম্প্রদায়, তাদের জীবন সংগ্রাম ও ভালোবাসার বাস্তব চিত্র।</p>
         </div>
     </div>
 
     <script>
         function showBookDetails(bookId) {
-            document.getElementById(bookId + '-details').style.display = 'block'; 
+            document.getElementById(bookId + '-details').style.display = 'block';
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none'; 
+            document.getElementById(modalId).style.display = 'none';
         }
-        
-        // Window-er Baire Click Korleo Bondho Hobey
+
+        // ব্যবহারকারী যখন মোডালের বাইরে ক্লিক করবে, তখন মোডাল বন্ধ হবে
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
