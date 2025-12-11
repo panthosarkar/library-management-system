@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Catalog — Search System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding: 1.5rem; }
+    .results-count { font-size: 0.95rem; }
+    .card-img-top { height: 160px; object-fit: cover; }
+    .filter-section { max-height: 65vh; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row g-4">
+      <div class="col-12">
+        <h1 class="h3">Library Catalog — Search System</h1>
+        <p class="text-muted">Advanced search, filters, sorting, and online catalog browsing made with Bootstrap.</p>
+      </div>
+
+      <!-- Search + Advanced options -->
+      <div class="col-12">
+        <div class="card p-3">
+          <form id="searchForm" class="row g-2 align-items-end">
+            <div class="col-md-5">
+              <label class="form-label">Keywords (title / author)</label>
+              <input id="q" class="form-control" placeholder="e.g. Pride and Prejudice / Jane Austen">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Title</label>
+              <input id="title" class="form-control" placeholder="Exact title">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Author</label>
+              <input id="author" class="form-control" placeholder="Author name">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Category</label>
+              <select id="category" class="form-select">
+                <option value="">Any</option>
+                <option>Fiction</option>
+                <option>Non-fiction</option>
+                <option>Science</option>
+                <option>History</option>
+                <option>Children</option>
+                <option>Biography</option>
+              </select>
+            </div>
+
+            <div class="col-12 mt-2">
+              <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <button id="clearBtn" type="button" class="btn btn-outline-secondary">Clear</button>
+                <button id="toggleAdvanced" type="button" class="btn btn-outline-info ms-auto" data-bs-toggle="collapse" data-bs-target="#advancedFilters">Advanced Filters</button>
+              </div>
+            </div>
+
+            <div class="collapse mt-3" id="advancedFilters">
+              <div class="card card-body">
+                <div class="row g-2">
+                  <div class="col-md-3">
+                    <label class="form-label">Format</label>
+                    <select id="format" class="form-select">
+                      <option value="">Any</option>
+                      <option>Print</option>
+                      <option>eBook</option>
+                      <option>Audiobook</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Language</label>
+                    <select id="language" class="form-select">
+                      <option value="">Any</option>
+                      <option>English</option>
+                      <option>Spanish</option>
+                      <option>Bengali</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Publication Year</label>
+                    <div class="d-flex">
+                      <input id="pubFrom" class="form-control" placeholder="From (YYYY)">
+                      <input id="pubTo" class="form-control ms-2" placeholder="To (YYYY)">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Availability</label>
+                    <select id="availability" class="form-select">
+                      <option value="">Any</option>
+                      <option>Available</option>
+                      <option>Checked out</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Sidebar filters + results -->
+      <div class="col-12">
+        <div class="row g-3">
+          <aside class="col-lg-3 order-lg-1 order-2">
+            <div class="card p-3 filter-section">
+              <h5 class="mb-3">Filters</h5>
+
+              <div class="mb-3">
+                <label class="form-label">Categories</label>
+                <div id="categoryFilters" class="d-flex flex-column"></div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Sort by</label>
+                <select id="sortBy" class="form-select">
+                  <option value="relevance">Relevance</option>
+                  <option value="title_asc">Title A–Z</option>
+                  <option value="title_desc">Title Z–A</option>
+                  <option value="author_asc">Author A–Z</option>
+                  <option value="year_desc">Newest</option>
+                  <option value="year_asc">Oldest</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Items per page</label>
+                <select id="pageSize" class="form-select">
+                  <option>8</option>
+                  <option>12</option>
+                  <option>20</option>
+                </select>
+              </div>
+
+              <div class="mt-4">
+                <button id="applyFilters" class="btn btn-success w-100">Apply</button>
+              </div>
+            </div>
+          </aside>
+
+          <main class="col-lg-9 order-lg-2 order-1">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="results-count" id="resultsCount">0 results</div>
+              <div>
+                <div class="input-group">
+                  <input id="quickSort" class="form-control form-control-sm" placeholder="Quick filter (title/author)">
+                  <button id="clearQuick" class="btn btn-sm btn-outline-secondary">Clear</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="resultsGrid" class="row g-3"></div>
+
+            <nav aria-label="Page navigation" class="mt-4">
+              <ul id="pagination" class="pagination"></ul>
+            </nav>
+          </main>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Detail modal -->
+  <div class="modal fade" id="detailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modalTitle" class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4"><img id="modalCover" class="img-fluid rounded" src="" alt="cover"></div>
+            <div class="col-md-8">
+              <p id="modalAuthor" class="mb-1"></p>
+              <p id="modalISBN" class="mb-1 text-muted"></p>
+              <p id="modalCategory" class="mb-1"></p>
+              <p id="modalDesc"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">Reserve</button>
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Sample dataset — replace with API integration when ready
+    const DATA = [
+      {id:1, title:'Pride and Prejudice', author:'Jane Austen', isbn:'9780141040349', category:'Fiction', year:1813, format:'Print', language:'English', availability:'Available', cover:'https://picsum.photos/seed/pandp/300/400', desc:'A classic novel about manners and marriage.'},
+      {id:2, title:'A Brief History of Time', author:'Stephen Hawking', isbn:'9780553380163', category:'Science', year:1988, format:'Print', language:'English', availability:'Checked out', cover:'https://picsum.photos/seed/time/300/400', desc:'Cosmology for the general reader.'},
+      {id:3, title:'The Little Prince', author:'Antoine de Saint-Exupéry', isbn:'9780156013987', category:'Children', year:1943, format:'eBook', language:'English', availability:'Available', cover:'https://picsum.photos/seed/prince/300/400', desc:'A poetic tale about loneliness and friendship.'},
+      {id:4, title:'Sapiens: A Brief History of Humankind', author:'Yuval Noah Harari', isbn:'9780062316097', category:'History', year:2011, format:'Print', language:'English', availability:'Available', cover:'https://picsum.photos/seed/sapiens/300/400', desc:'A wide-ranging look at human history.'},
+      {id:5, title:'Learning Python', author:'Mark Lutz', isbn:'9781449355739', category:'Non-fiction', year:2013, format:'Print', language:'English', availability:'Available', cover:'https://picsum.photos/seed/python/300/400', desc:'Comprehensive guide to Python programming.'},
+      {id:6, title:'জীবন ও সময়', author:'Some Bengali Author', isbn:'1234567890', category:'Biography', year:2001, format:'Print', language:'Bengali', availability:'Available', cover:'https://picsum.photos/seed/bengali/300/400', desc:'A Bengali biography sample.'},
+      // ... add more sample items
+    ];
+
+    // State
+    let filtered = [...DATA];
+    let currentPage = 1;
+    let pageSize = 8;
+
+    // DOM refs
+    const resultsGrid = document.getElementById('resultsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const pagination = document.getElementById('pagination');
+
+    function renderCategoryFilters(){
+      const container = document.getElementById('categoryFilters');
+      const categories = Array.from(new Set(DATA.map(d=>d.category))).sort();
+      container.innerHTML = categories.map(c=>`
+        <div class=\"form-check\"> 
+          <input class=\"form-check-input category-check\" type=\"checkbox\" value=\"${c}\" id=\"cat_${c}\"> 
+          <label class=\"form-check-label\" for=\"cat_${c}\">${c}</label>
+        </div>
+      `).join('');
+    }
+
+    function applySearchFilters(){
+      const q = document.getElementById('q').value.trim().toLowerCase();
+      const title = document.getElementById('title').value.trim().toLowerCase();
+      const author = document.getElementById('author').value.trim().toLowerCase();
+      const isbn = document.getElementById('isbn').value.trim().toLowerCase();
+      const category = document.getElementById('category').value;
+      const format = document.getElementById('format').value;
+      const language = document.getElementById('language').value;
+      const pubFrom = parseInt(document.getElementById('pubFrom').value) || -Infinity;
+      const pubTo = parseInt(document.getElementById('pubTo').value) || Infinity;
+      const availability = document.getElementById('availability').value;
+
+      // checkbox categories
+      const checkedCats = Array.from(document.querySelectorAll('.category-check:checked')).map(n=>n.value);
+
+      filtered = DATA.filter(item=>{
+        if(q){ const hay = (item.title + ' ' + item.author + ' ' + item.desc).toLowerCase(); if(!hay.includes(q)) return false; }
+        if(title && !item.title.toLowerCase().includes(title)) return false;
+        if(author && !item.author.toLowerCase().includes(author)) return false;
+        if(isbn && !item.isbn.toLowerCase().includes(isbn)) return false;
+        if(category && item.category !== category) return false;
+        if(format && item.format !== format) return false;
+        if(language && item.language !== language) return false;
+        if(!isFinite(pubFrom) === false && item.year < pubFrom) return false;
+        if(!isFinite(pubTo) === false && item.year > pubTo) return false;
+        if(availability && item.availability !== availability) return false;
+        if(checkedCats.length && !checkedCats.includes(item.category)) return false;
+        return true;
+      });
+
+      // sorting
+      const sortBy = document.getElementById('sortBy').value;
+      switch(sortBy){
+        case 'title_asc': filtered.sort((a,b)=>a.title.localeCompare(b.title)); break;
+        case 'title_desc': filtered.sort((a,b)=>b.title.localeCompare(a.title)); break;
+        case 'author_asc': filtered.sort((a,b)=>a.author.localeCompare(b.author)); break;
+        case 'year_desc': filtered.sort((a,b)=>b.year - a.year); break;
+        case 'year_asc': filtered.sort((a,b)=>a.year - b.year); break;
+        default: /* relevance: keep as-is */ break;
+      }
+
+      currentPage = 1;
+      renderResults();
+    }
+
+    function renderResults(){
+      const total = filtered.length;
+      resultsCount.textContent = `${total} result${total !== 1 ? 's' : ''}`;
+
+      pageSize = parseInt(document.getElementById('pageSize').value) || 8;
+      const start = (currentPage - 1) * pageSize;
+      const pageItems = filtered.slice(start, start + pageSize);
+
+      resultsGrid.innerHTML = pageItems.map(item=>`
+        <div class=\"col-md-6 col-lg-4\">
+          <div class=\"card h-100\">
+            <img src=\"${item.cover}\" class=\"card-img-top\" alt=\"cover\">
+            <div class=\"card-body d-flex flex-column\">
+              <h5 class=\"card-title\">${item.title}</h5>
+              <p class=\"card-text text-muted small mb-2\">${item.author} • ${item.year}</p>
+              <p class=\"card-text text-truncate\">${item.desc}</p>
+              <div class=\"mt-auto d-flex justify-content-between align-items-center\">
+                <span class=\"badge bg-secondary\">${item.category}</span>
+                <div>
+                  <button class=\"btn btn-sm btn-outline-primary me-1 viewBtn\" data-id=\"${item.id}\">Details</button>
+                  <button class=\"btn btn-sm btn-success reserveBtn\">${item.availability === 'Available' ? 'Reserve' : 'Notify'}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      renderPagination(Math.ceil(total / pageSize));
+      attachResultHandlers();
+    }
+
+    function renderPagination(pageCount){
+      pagination.innerHTML = '';
+      if(pageCount <= 1) return;
+      for(let p=1;p<=pageCount;p++){
+        const li = document.createElement('li');
+        li.className = 'page-item' + (p===currentPage ? ' active' : '');
+        li.innerHTML = `<a class=\"page-link\" href=\"#\">${p}</a>`;
+        li.addEventListener('click', (e)=>{ e.preventDefault(); currentPage = p; renderResults(); });
+        pagination.appendChild(li);
+      }
+    }
+
+    function attachResultHandlers(){
+      document.querySelectorAll('.viewBtn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = parseInt(btn.dataset.id);
+          const item = DATA.find(d=>d.id===id);
+          if(!item) return;
+          document.getElementById('modalTitle').textContent = item.title;
+          document.getElementById('modalAuthor').textContent = `By ${item.author}`;
+          document.getElementById('modalISBN').textContent = `ISBN: ${item.isbn}`;
+          document.getElementById('modalCategory').textContent = `${item.category} • ${item.year} • ${item.format}`;
+          document.getElementById('modalDesc').textContent = item.desc;
+          document.getElementById('modalCover').src = item.cover;
+          const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+          modal.show();
+        });
+      });
+    }
+
+    // Quick filter
+    document.getElementById('quickSort').addEventListener('input', (e)=>{
+      const t = e.target.value.trim().toLowerCase();
+      if(!t){ filtered = [...DATA]; applySearchFilters(); return; }
+      filtered = DATA.filter(d=> (d.title + ' ' + d.author).toLowerCase().includes(t));
+      currentPage = 1; renderResults();
+    });
+    document.getElementById('clearQuick').addEventListener('click', ()=>{ document.getElementById('quickSort').value=''; filtered=[...DATA]; renderResults(); });
+
+    // Form handlers
+    document.getElementById('searchForm').addEventListener('submit', (e)=>{ e.preventDefault(); applySearchFilters(); });
+    document.getElementById('applyFilters').addEventListener('click', applySearchFilters);
+    document.getElementById('clearBtn').addEventListener('click', ()=>{ document.getElementById('searchForm').reset(); document.querySelectorAll('.category-check').forEach(c=>c.checked=false); filtered=[...DATA]; renderResults(); });
+
+    // initialize
+    renderCategoryFilters(); renderResults();
+  </script>
+</body>
+</html>
